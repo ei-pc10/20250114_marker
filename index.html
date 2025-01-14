@@ -1,33 +1,31 @@
-<!DOCTYPE html>
+<!doctype HTML>
+<!-- 3Dモデル作成者:井嶋君-->
 <html>
-  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>しばウォーク</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/2.2.0/aframe/build/aframe-ar.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
-    <script type="text/javascript" src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" antialias="true" renderer="gammaOutput: true;">
-      <!-- 環境光 -->
-    
+    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script>
 
-      <!-- Markerを設定 -->
-      <a-marker type="pattern" url="sasa.patt">
-        <!-- 3Dモデルを読み込む -->
-        <a-entity
-          id="model"
-          gltf-model="https://raw.githubusercontent.com/ei-pc10/modelmodel/main/%E3%83%81%E3%83%93%E3%82%AD%E3%83%A3%E3%83%A9%E7%BE%8A%E7%BE%B9v%E3%83%9D%E3%83%8B%E3%83%86.31%E3%82%88%E3%82%8D%E3%81%93%E3%81%B3%E3%83%9C%E3%83%BC%E3%83%B3.glb"
-          scale="2 2 2"
-          position="0 0 0"
-          look-at="[camera]"
-          material="polygonOffset: true; polygonOffsetFactor: 1; polygonOffsetUnits: 1;">
-        </a-entity>
-      </a-marker>
+<body style='margin:0px; overflow:hidden;'>
+<!-- こっからA-Frame -->
+<a-scene embedded arjs="debugUIEnabled:false; trackingMethod:best;" vr-mode-ui="enabled: false">
+    <!-- オブジェクトファイルとマテリアルファイルを読み込む -->
+    <a-assets>
+        <a-asset-item id="workspace_glb" src="https://raw.githubusercontent.com/ei-pc10/modelmodel/main/%E3%83%81%E3%83%93%E3%82%AD%E3%83%A3%E3%83%A9%E7%BE%8A%E7%BE%B9v%E3%83%9D%E3%83%8B%E3%83%86.31%E3%82%88%E3%82%8D%E3%81%93%E3%81%B3%E3%83%9C%E3%83%BC%E3%83%B3.glb"></a-asset-item>
+    </a-assets>
 
-      <!-- デフォルトカメラ -->
-      <a-entity camera></a-entity>
-    </a-scene>
-  </body>
+    <!-- こっからARの世界。マーカー上になにを展開するかを書く -->
+    <!-- マーカー animation.patt にモデルを表示 -->
+    <a-marker type="pattern" url="photo_daiiti/daiiti.patt">
+        <a-gltf-model src="#workspace_glb" position="0 0 -3.5" scale="2 2 2"></a-gltf-model>
+    </a-marker>
+
+    <!-- ARのカメラ -->
+    <a-entity camera></a-entity>
+</a-scene>
+<!-- ここまででA-Frameおわり -->
+</body>
 </html>
