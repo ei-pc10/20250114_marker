@@ -1,31 +1,58 @@
 <!doctype HTML>
 <!-- 3Dモデル作成者:井嶋君-->
 <html>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>しばウォーク</title>
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>しばウォーク</title>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  <script type="text/javascript" src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js"></script>
 
-<body style='margin:0px; overflow:hidden;'>
-<!-- こっからA-Frame -->
-<a-scene embedded arjs="debugUIEnabled:false; trackingMethod:best;" vr-mode-ui="enabled: false">
-    <!-- オブジェクトファイルとマテリアルファイルを読み込む -->
-    <a-assets>
-        <a-asset-item id="workspace_glb" src="https://raw.githubusercontent.com/ei-pc10/modelmodel/main/%E3%83%81%E3%83%93%E3%82%AD%E3%83%A3%E3%83%A9%E7%BE%8A%E7%BE%B9v%E3%83%9D%E3%83%8B%E3%83%86.31%E3%82%88%E3%82%8D%E3%81%93%E3%81%B3%E3%83%9C%E3%83%BC%E3%83%B3.glb"></a-asset-item>
-    </a-assets>
+  <body style="margin:0px; overflow:hidden;">
+    <!-- こっからA-Frame -->
+    <a-scene 
+      embedded 
+      arjs="debugUIEnabled:false; trackingMethod:best;" 
+      vr-mode-ui="enabled: false" 
+      antialias="true" 
+      renderer="gammaOutput: true;">
+      
+      <!-- ライトの設定 -->
+      <a-light type="ambient" intensity="0.6"></a-light> <!-- 環境光 -->
+      <a-light 
+        type="directional" 
+        position="5 10 7" 
+        intensity="1.2" 
+        target="#workspace_model"></a-light> <!-- 主光源 -->
+      <a-light 
+        type="point" 
+        position="-5 5 -5" 
+        intensity="0.8" 
+        decay="2"></a-light> <!-- 補助光 -->
 
-    <!-- こっからARの世界。マーカー上になにを展開するかを書く -->
-    <!-- マーカー animation.patt にモデルを表示 -->
-    <a-marker type="pattern" url="photo_sasa/sasa.patt">
-        <a-gltf-model src="#workspace_glb" position="0 0 0" scale="1.5 1.5 1.5"></a-gltf-model>
-    </a-marker>
+      <!-- オブジェクトファイルとマテリアルファイルを読み込む -->
+      <a-assets>
+        <a-asset-item 
+          id="workspace_glb" 
+          src="https://raw.githubusercontent.com/ei-pc10/modelmodel/main/%E3%83%81%E3%83%93%E3%82%AD%E3%83%A3%E3%83%A9%E7%BE%8A%E7%BE%B9v%E3%83%9D%E3%83%8B%E3%83%86.31%E3%82%88%E3%82%8D%E3%81%93%E3%81%B3%E3%83%9C%E3%83%BC%E3%83%B3.glb">
+        </a-asset-item>
+      </a-assets>
 
-    <!-- ARのカメラ -->
-    <a-entity camera></a-entity>
-</a-scene>
-<!-- ここまででA-Frameおわり -->
-</body>
+      <!-- こっからARの世界 -->
+      <a-marker type="pattern" url="photo_sasa/sasa.patt">
+        <a-gltf-model 
+          id="workspace_model" 
+          src="#workspace_glb" 
+          position="0 0 0" 
+          scale="1.5 1.5 1.5"
+          material="polygonOffset: true; polygonOffsetFactor: 1; polygonOffsetUnits: 1;">
+        </a-gltf-model>
+      </a-marker>
+
+      <!-- ARのカメラ -->
+      <a-entity camera></a-entity>
+    </a-scene>
+    <!-- ここまででA-Frameおわり -->
+  </body>
 </html>
