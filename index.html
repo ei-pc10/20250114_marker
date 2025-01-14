@@ -9,15 +9,15 @@
     <script type="text/javascript" src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs antialias="true" renderer="gammaOutput: true;">
+    <a-scene embedded arjs="debugUIEnabled: true;" antialias="true" renderer="gammaOutput: true;">
       <!-- 環境光 -->
-      <a-light type="ambient" intensity="0.5"></a-light>
+      <a-light type="ambient" intensity="1.0"></a-light>
       
       <!-- 指向性ライト -->
       <a-light 
         type="directional" 
         position="5 10 7" 
-        intensity="1" 
+        intensity="2.0" 
         target="#model"></a-light>
 
       <!-- Markerを設定 -->
@@ -27,7 +27,7 @@
           id="model"
           gltf-model="https://raw.githubusercontent.com/ei-pc10/modelmodel/main/%E3%83%81%E3%83%93%E3%82%AD%E3%83%A3%E3%83%A9%E7%BE%8A%E7%BE%B9v%E3%83%9D%E3%83%8B%E3%83%86.31%E3%82%88%E3%82%8D%E3%81%93%E3%81%B3%E3%83%9C%E3%83%BC%E3%83%B3.glb"
           scale="2 2 2"
-          position="0 0 -5"
+          position="0 0 0"
           look-at="[camera]"
           material="polygonOffset: true; polygonOffsetFactor: 1; polygonOffsetUnits: 1;">
         </a-entity>
